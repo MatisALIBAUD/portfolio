@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Hacker</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    body {
+      display: flex;
+      background-color: #0f0f0f;
+      color: #ccff00;
+      min-height: 100vh;
+    }
+
+    nav {
+      width: 180px;
+      height: 100vh;
+      background-color: #1a1a1a;
+      padding: 20px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      border-right: 2px solid #00ffff;
+    }
+
+    nav h2 {
+      color: #00ffff;
+      margin-bottom: 30px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    nav button {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      color: #ccff00;
+      font-size: 14px;
+      text-align: left;
+      margin-bottom: 20px;
+      cursor: pointer;
+      padding: 10px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: rgba(0, 255, 255, 0.2);
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
+
+    nav button:hover::before {
+      width: 100%;
+    }
+
+    nav button:hover {
+      color: #00ffff;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 40px;
+      width: 100%;
+      padding-bottom: 80px; /* pour laisser de la place au footer */
+    }
+
+    section {
+      display: none;
+      margin-bottom: 60px;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #00ffff;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 200px;
+      width: calc(100% - 200px);
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #00ffff;
+      color: #888;
+      background-color: #1a1a1a;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2>Mon Portfolio</h2>
+    <button onclick="showSection('accueil')">Accueil</button>
+    <button onclick="showSection('experiences')">Expériences</button>
+    <button onclick="showSection('formations')">Formations</button>
+    <button onclick="showSection('diplomes')">Diplômes</button>
+    
+    <button onclick="showSection('cv')">Voir Mon CV</button>
+  </nav>
+
+  <div class="content">
+    <section id="accueil" class="active">
+      <h1>Bienvenue</h1>
+      <p>Voici l'endroit pour te présenter et mettre tes motivations. Tu peux écrire ici un petit texte sur qui tu es et ce que tu veux accomplir.</p>
+    </section>
+
+    <section id="experiences">
+      <h2>Expériences</h2>
+      <p>Ici tu pourras lister tes expériences professionnelles.</p>
+    </section>
+
+    <section id="formations">
+      <h2>Formations</h2>
+      <p>Décris ici les formations que tu as suivies.</p>
+    </section>
+
+    <section id="diplomes">
+      <h2>Diplômes</h2>
+      <p>Liste tes diplômes ici.</p>
+    </section>
+
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <p>Ajoute ici les certifications que tu as obtenues.</p>
+    $1
+
+    <section id="cv">
+      <h2>Voir Mon CV</h2>
+      <p>Tu peux ajouter ici un lien vers ton CV ou l'intégrer directement en PDF ou en image.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>Created by Matis Alibaud</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
