@@ -1,586 +1,200 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Portfolio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #0b1020;
-      color: #e8eefc;
-      line-height: 1.6;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(0, 230, 118, 0.18), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.18), transparent 35%);
-      z-index: -1;
-    }
-
-    header {
-      background: rgba(11, 16, 32, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 230, 118, 0.25);
-      color: white;
-      padding: 18px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header h1 {
-      font-size: 22px;
-      color: #00e676;
-      letter-spacing: 1px;
-    }
-
-    header h1::before {
-      content: "</> ";
-      color: #00b0ff;
-    }
-
-    nav a {
-      color: #e8eefc;
-      text-decoration: none;
-      margin-left: 18px;
-      font-weight: 600;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00e676;
-    }
-
-    .hero {
-      min-height: 85vh;
-      padding: 90px 8%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 45px;
-    }
-
-    .hero-text {
-      max-width: 650px;
-    }
-
-    .hero-text h2 {
-      font-size: 52px;
-      line-height: 1.1;
-      margin-bottom: 22px;
-    }
-
-    .hero-text h2 span {
-      color: #00e676;
-    }
-
-    .hero-text p {
-      font-size: 19px;
-      color: #cbd5e1;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #00c853, #00b0ff);
-      color: white;
-      padding: 13px 26px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 20px rgba(0, 230, 118, 0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(124, 58, 237, 0.55);
-    }
-
-    .hero-image {
-      width: 340px;
-      min-height: 260px;
-      border-radius: 22px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(0, 230, 118, 0.35);
-      box-shadow: 0 0 35px rgba(0, 230, 118, 0.15);
-      padding: 22px;
-      color: #cbd5e1;
-      font-family: "Courier New", monospace;
-      font-size: 16px;
-    }
-
-    .hero-image::before {
-      content: "terminal.exe";
-      display: block;
-      color: #00e676;
-      margin-bottom: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      padding-bottom: 10px;
-    }
-
-    section {
-      padding: 75px 8%;
-    }
-
-    section h2 {
-      text-align: center;
-      font-size: 36px;
-      margin-bottom: 42px;
-      color: #00e676;
-    }
-
-    section h2::after {
-      content: "";
-      display: block;
-      width: 70px;
-      height: 3px;
-      background: linear-gradient(90deg, #00d9ff, #00b0ff);
-      margin: 12px auto 0;
-      border-radius: 10px;
-    }
-
-    .about {
-      background: rgba(15, 23, 42, 0.6);
-    }
-
-    .about p {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-      font-size: 18px;
-      color: #cbd5e1;
-    }
-
-    .skills-list,
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-    }
-
-    .skill,
-    .project-card {
-      background: rgba(15, 23, 42, 0.85);
-      padding: 26px;
-      border-radius: 18px;
-      border: 1px solid rgba(0, 230, 118, 0.18);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.22);
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .skill:hover,
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: #00e676;
-    }
-
-    .skill h3,
-    .project-card h3 {
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
-
-    .skill p,
-    .project-card p {
-      color: #cbd5e1;
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 14px;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #111827, #1e293b);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .contact {
-      background: rgba(15, 23, 42, 0.95);
-      color: white;
-      text-align: center;
-      border-top: 1px solid rgba(0, 230, 118, 0.18);
-    }
-
-    .contact h2 {
-      color: #00e676;
-    }
-
-    .contact p {
-      margin-bottom: 12px;
-      font-size: 18px;
-      color: #cbd5e1;
-    }
-
-    footer {
-      background: #050816;
-      color: #94a3b8;
-      text-align: center;
-      padding: 22px;
-      font-size: 14px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      nav {
-        text-align: center;
-      }
-
-      nav a {
-        margin: 0 7px;
-        font-size: 14px;
-      }
-
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-text h2 {
-        font-size: 38px;
-      }
-
-      .hero-image {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio BTS SIO SISR de Matis ALIBAUD — réseaux, systèmes, cybersécurité et infrastructures.">
+<title>Matis ALIBAUD | Portfolio BTS SIO SISR</title>
+<style>
+:root{
+  --bg:#07101d;--panel:#0d1929;--panel2:#111f31;--text:#edf6ff;--muted:#9fb0c4;
+  --green:#39e58c;--blue:#38bdf8;--line:rgba(255,255,255,.09);--shadow:0 20px 50px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:
+radial-gradient(circle at 10% 10%,rgba(57,229,140,.12),transparent 28%),
+radial-gradient(circle at 90% 35%,rgba(56,189,248,.10),transparent 28%)}
+a{color:inherit}.container{width:min(1180px,88%);margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(7,16,29,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:900;letter-spacing:.5px;text-decoration:none}.brand span{color:var(--green)}
+nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:16px}nav a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:700}nav a:hover{color:var(--green)}
+.hero{min-height:88vh;display:grid;grid-template-columns:1.35fr .8fr;align-items:center;gap:60px;padding:85px 0}
+.eyebrow,.badge{display:inline-flex;align-items:center;border:1px solid rgba(57,229,140,.25);background:rgba(57,229,140,.07);color:var(--green);border-radius:999px;padding:6px 11px;font-size:.8rem;font-weight:800}
+.hero h1{font-size:clamp(2.8rem,6vw,5.5rem);line-height:.96;margin:20px 0}.hero h1 span{color:var(--green)}
+.hero .lead{font-size:1.15rem;color:var(--muted);max-width:760px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-block;text-decoration:none;padding:12px 19px;border-radius:10px;font-weight:800;border:1px solid var(--line);background:var(--panel)}
+.btn.primary{background:linear-gradient(135deg,#19b96b,#159bd2);border:0}.btn:hover{transform:translateY(-2px)}
+.terminal{background:#050a12;border:1px solid rgba(57,229,140,.28);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.terminal-head{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--muted);font:700 .8rem monospace}.terminal-body{padding:25px;font:500 .9rem/1.9 monospace;color:#c7d5e5}.ok{color:var(--green)}.cmd{color:var(--blue)}
+section{padding:90px 0}.alt{background:rgba(255,255,255,.018);border-block:1px solid rgba(255,255,255,.035)}
+.section-head{max-width:760px;margin-bottom:38px}.section-head small{color:var(--green);font-weight:900;text-transform:uppercase;letter-spacing:2px}.section-head h2{font-size:clamp(2rem,4vw,3rem);margin:6px 0 10px}.section-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid.two{grid-template-columns:repeat(2,1fr)}
+.card{background:linear-gradient(145deg,rgba(17,31,49,.95),rgba(10,22,36,.95));border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+.card:hover{border-color:rgba(57,229,140,.38);transform:translateY(-3px)}.card h3{margin-bottom:8px}.card p,.card li{color:var(--muted)}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.tag{font:700 .76rem monospace;background:#08111d;border:1px solid var(--line);border-radius:7px;padding:5px 8px;color:#cce3f7}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}.stat{text-align:center;padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(13,25,41,.75)}.stat strong{display:block;color:var(--green);font-size:1.7rem}.stat span{font-size:.82rem;color:var(--muted)}
+.timeline{position:relative;padding-left:26px}.timeline:before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--green),var(--blue))}
+.time{position:relative;margin-bottom:24px}.time:before{content:"";position:absolute;left:-26px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(57,229,140,.1)}.time .date{color:var(--green);font-size:.8rem;font-weight:900}.time p{color:var(--muted)}
+.project{position:relative}.project .num{font:900 3rem monospace;color:rgba(57,229,140,.12);position:absolute;right:18px;top:10px}.project ul{padding-left:18px;margin-top:12px}
+.skill-card h3{display:flex;gap:10px;align-items:center}.skill-card .level{display:inline-block;margin:10px 0;color:var(--green);font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+.e5{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.e5-item{display:flex;gap:13px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.e5-item b{color:var(--green)}
+.notice{margin-top:24px;padding:18px;border-left:3px solid var(--blue);background:rgba(56,189,248,.06);color:var(--muted)}
+.cert-status{font-size:.72rem;font-weight:900;color:var(--green);text-transform:uppercase;letter-spacing:1px}
+.contact-box{text-align:center;max-width:800px;margin:auto}.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px}
+footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid var(--line);font-size:.85rem}
+@media(max-width:900px){nav{display:none}.hero{grid-template-columns:1fr;min-height:auto}.grid,.grid.two,.stats,.e5{grid-template-columns:1fr}.terminal{max-width:600px}.hero{padding:70px 0}section{padding:65px 0}}
+</style>
 </head>
 <body>
-
-  <header>
-    <h1>PortFolio de MATIS ALIBAUD</h1>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#accueil">&lt;/&gt; Matis <span>ALIBAUD</span></a>
     <nav>
-      <a href="#accueil">Accueil</a>
-      <a href="#apropos">À propos</a>
-      <a href="#projets">Projets</a>
-      <a href="#parcours">Parcours</a>
-      <a href="#competences">Compétences</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
+      <a href="#profil">Profil</a><a href="#parcours">Parcours</a><a href="#experiences">Expériences</a>
+      <a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#e5">E5</a>
+      <a href="#veille">Veille</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="accueil">
-      <div class="hero-text">
-        <h2>Bonjour, je suis <span>MATIS ALIBAUD</span></h2>
-        <p>Étudiant en BTS SIO option SISR, passionné par les réseaux, les systèmes, la cybersécurité et l'infrastructure informatique. Je développe mes compétences autour de l'administration réseau, des serveurs et de la supervision d'infrastructures.</p>
-        <a href="#projets" class="btn">Voir mes projets</a>
-        <a href="#contact" class="btn" style="margin-left:12px;">Me contacter</a>
-        <a href="CV_Matis_Alibaud.pdf" class="btn" download>
-          📄 Télécharger mon CV
-        </a>
+<main>
+<section id="accueil">
+<div class="container hero">
+  <div>
+    <span class="eyebrow">BTS SIO • OPTION SISR • SESSION 2026</span>
+    <h1><span>Matis ALIBAUD</span></h1>
+    <p class="lead">Étudiant en BTS Services Informatiques aux Organisations, option Solutions d'Infrastructure, Systèmes et Réseaux. Je m'intéresse particulièrement à l'administration réseau, aux infrastructures, à la cybersécurité, à la virtualisation et au diagnostic.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projets">Découvrir mes réalisations</a>
+      <a class="btn" href="#e5">Compétences BTS SIO</a>
+      <a class="btn" href="CV_Matis_Alibaud.pdf" target="_blank">Mon CV</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="terminal-body">
+      <span class="ok">Matis ALIBAUD — BTS SIO SISR</span><br><br>
+      <span class="ok"></span> Réseaux & VLAN<br>
+      <span class="ok"></span> Switching & LACP<br>
+      <span class="ok"></span> FortiGate & sécurité<br>
+      <span class="ok"></span> VPN site-à-site<br>
+      <span class="ok"></span> Systèmes & virtualisation<br>
+      <span class="ok"></span> Support & diagnostic
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="profil" class="alt"><div class="container">
+  <div class="section-head"><small>01 — Profil</small><h2>À propos de moi</h2><p>Un parcours construit autour des systèmes, des réseaux et de la pratique professionnelle.</p></div>
+  <div class="grid two">
+    <div class="card"><h3>Mon profil</h3><p>Après un Bac Pro Systèmes Numériques obtenu avec mention Bien, j'ai poursuivi en BTS SIO option SISR au lycée Dick Ukeiwë. Mes projets scolaires et mes stages m'ont permis de travailler sur des infrastructures réelles ou simulées et de progresser dans la configuration, la sécurisation et le dépannage réseau.</p></div>
+    <div class="card"><h3>Mon objectif</h3><p>Continuer à développer mes compétences dans les métiers de l'infrastructure informatique : administration systèmes et réseaux, sécurité, déploiement, supervision et support. Je privilégie une approche pratique : comprendre l'architecture, configurer, tester, diagnostiquer puis documenter.</p></div>
+  </div>
+</div></section>
+
+<section id="parcours"><div class="container">
+  <div class="section-head"><small>02 — Parcours</small><h2>Formation & progression</h2></div>
+  <div class="timeline">
+    <div class="time"><div class="date">2025 — 2026</div><h3>BTS SIO — Option SISR</h3><p>Lycée Dick Ukeiwë • Administration systèmes et réseaux, cybersécurité, virtualisation, projets d'infrastructure et professionnalisation.</p></div>
+    <div class="time"><div class="date">2022 — 2024</div><h3>Bac Pro Systèmes Numériques — Mention Bien</h3><p>Lycée Polyvalent du Mont-Dore • Réseaux, maintenance, systèmes numériques et plusieurs périodes de formation en entreprise.</p></div>
+  </div>
+</div></section>
+
+<section id="experiences" class="alt"><div class="container">
+  <div class="section-head"><small>03 — Expériences</small><h2>Expériences professionnelles</h2><p>Des stages qui m'ont progressivement amené du support vers la conception et la sécurisation d'infrastructures.</p></div>
+  <div class="grid">
+    <article class="card"><h3>SF2i NC — 2026</h3><p><b>Stage BTS SIO SISR •</b></p><p>Configuration de switches administrables, VLAN, trunks, PVID, LACP, maquette FortiGate, routage inter-VLAN, règles de sécurité, fibre/SFP, VPN site-à-site, VMware et Veeam.</p><div class="tags"><span class="tag">FortiGate 40F</span><span class="tag">FortiGate 90G</span><span class="tag">LACP</span><span class="tag">SFP</span><span class="tag">VPN</span></div></article>
+    <article class="card"><h3>SF2i NC — 2025</h3><p><b>Stage BTS SIO •</b></p><p>Paramétrage d'un NAS Synology avec RAID et DHCP, déploiement Windows 11, découverte/configuration MikroTik, VLAN, IP, LACP, maintenance et assistance utilisateurs.</p><div class="tags"><span class="tag">Synology</span><span class="tag">RAID</span><span class="tag">MikroTik</span><span class="tag">Windows 11</span></div></article>
+    <article class="card"><h3>CABLES TELECOM NC — 2022 à 2024</h3><p><b>Périodes de formation Bac Pro</b></p><p>Découverte du monde professionnel, infrastructures réseau, installation, maintenance informatique et support technique.</p><div class="tags"><span class="tag">Réseau</span><span class="tag">Maintenance</span><span class="tag">Support</span></div></article>
+  </div>
+</div></section>
+
+<section id="projets"><div class="container">
+  <div class="section-head"><small>04 — Réalisations</small><h2>Projets techniques</h2><p>Les réalisations les plus représentatives de mon parcours SISR.</p></div>
+  <div class="grid">
+    <article class="card project"><span class="num">01</span><h3>Infrastructure sécurisée — SF2i</h3><p>Conception et mise en œuvre d'une maquette réseau segmentée autour d'un FortiGate et d'un switch administrable.</p><ul><li>VLAN 10 / 20 / 30 / 40 / 50</li><li>Trunks, PVID et LACP</li><li>Routage inter-VLAN et règles de pare-feu</li><li>Fibre optique et modules SFP</li><li>VPN site-à-site FortiGate 40F ↔ 90G</li><li>Tests et diagnostic de connectivité</li></ul><div class="tags"><span class="tag">FortiGate</span><span class="tag">VLAN</span><span class="tag">LACP</span><span class="tag">IPsec</span></div></article>
+    <article class="card project"><span class="num">02</span><h3>Projet TechForm NC</h3><p>Projet fil rouge de formation portant sur l'étude et l'évolution d'une infrastructure réseau.</p><ul><li>Étude des réseaux des salles D203/D204</li><li>Inventaire et vérification du matériel</li><li>Schémas et diagrammes réseau</li><li>Configuration du switch principal</li><li>Simulation du réseau sur Cisco Packet Tracer</li><li>Scripts de configuration des switches</li></ul><div class="tags"><span class="tag">Packet Tracer</span><span class="tag">Switching</span><span class="tag">Documentation</span></div></article>
+    <article class="card project"><span class="num">03</span><h3>TP Routage — Candidat 2</h3><p>Mise en place d'un routage inter-VLAN avec MikroTik x86 et Cisco Catalyst 2960 Plus.</p><ul><li>Création des VLAN 10, 20 et 30</li><li>Trunk 802.1Q</li><li>Adressage et passerelles</li><li>Règles de pare-feu</li><li>Accès serveur contrôlé</li><li>Blocage des flux SISR ↔ SLAM et résolution d'incidents</li></ul><div class="tags"><span class="tag">MikroTik</span><span class="tag">Cisco 2960</span><span class="tag">802.1Q</span><span class="tag">Firewall</span></div></article>
+  </div>
+</div></section>
+
+<section id="competences" class="alt"><div class="container">
+  <div class="section-head"><small>05 — Compétences</small><h2>Compétences techniques</h2><p>Pas de pourcentages arbitraires : les compétences sont présentées par domaines, technologies utilisées et réalisations concrètes.</p></div>
+  <div class="grid">
+    <div class="card skill-card"><h3>Réseaux & commutation</h3><span class="level">Mis en pratique en formation et en stage</span><p>Segmentation, adressage, configuration et validation de la connectivité.</p><div class="tags"><span class="tag">IPv4</span><span class="tag">VLAN</span><span class="tag">802.1Q</span><span class="tag">Trunk</span><span class="tag">PVID</span><span class="tag">LACP</span><span class="tag">SFP/Fibre</span></div></div>
+    <div class="card skill-card"><h3>Sécurité réseau</h3><span class="level">Mis en pratique en stage et TP</span><p>Segmentation des flux, filtrage, routage sécurisé et interconnexion de sites.</p><div class="tags"><span class="tag">FortiGate</span><span class="tag">Stormshield</span><span class="tag">Firewall</span><span class="tag">NAT</span><span class="tag">VPN IPsec</span></div></div>
+    <div class="card skill-card"><h3>Systèmes & services</h3><span class="level">Connaissances et pratique</span><p>Installation, administration de services et gestion d'environnements Windows/Linux.</p><div class="tags"><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">DHCP</span><span class="tag">DNS</span><span class="tag">Linux</span><span class="tag">Synology</span></div></div>
+    <div class="card skill-card"><h3>Virtualisation & sauvegarde</h3><span class="level">Pratique et approfondissement</span><p>Utilisation d'environnements virtualisés et découverte des solutions de sauvegarde professionnelles.</p><div class="tags"><span class="tag">VMware</span><span class="tag">VirtualBox</span><span class="tag">Veeam</span><span class="tag">RAID</span></div></div>
+    <div class="card skill-card"><h3>Support & diagnostic</h3><span class="level">Expérience professionnelle</span><p>Analyse d'incidents, tests de connectivité, maintenance, remplacement de matériel et accompagnement des utilisateurs.</p><div class="tags"><span class="tag">Diagnostic</span><span class="tag">Tests</span><span class="tag">Support</span><span class="tag">Maintenance</span></div></div>
+    <div class="card skill-card"><h3>Outils & Web</h3><span class="level">Utilisation dans mes projets</span><p>Simulation réseau, configuration d'équipements et développement de ma présence professionnelle en ligne.</p><div class="tags"><span class="tag">Cisco Packet Tracer</span><span class="tag">MikroTik</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GitHub</span></div></div>
+  </div>
+</div></section>
+
+<section id="e5"><div class="container">
+  <div class="section-head"><small>06 — Épreuve E5</small><h2>Compétences du BTS SIO</h2><p>Mon portfolio sert également de point d'entrée vers les réalisations professionnelles présentées dans mon tableau de synthèse.</p></div>
+  <div class="e5">
+    <div class="e5-item"><b>01</b><div><h3>Gérer le patrimoine informatique</h3><p>Inventaire, équipements réseau, NAS, sauvegarde, configuration et contrôle des ressources.</p></div></div>
+    <div class="e5-item"><b>02</b><div><h3>Répondre aux incidents et demandes</h3><p>Support, diagnostic réseau, maintenance, tests et résolution d'incidents.</p></div></div>
+    <div class="e5-item"><b>03</b><div><h3>Développer la présence en ligne</h3><p>Création et évolution de ce portfolio professionnel publié avec GitHub Pages.</p></div></div>
+    <div class="e5-item"><b>04</b><div><h3>Travailler en mode projet</h3><p>TechForm NC : étude, planification, schématisation, réalisation et validation d'une infrastructure.</p></div></div>
+    <div class="e5-item"><b>05</b><div><h3>Mettre à disposition un service</h3><p>Configuration, déploiement, tests d'intégration et validation de services réseau et système.</p></div></div>
+    <div class="e5-item"><b>06</b><div><h3>Organiser son développement professionnel</h3><p>Veille technologique, certifications, GitHub et progression à travers projets et stages.</p></div></div>
+  </div>
+</div></section>
+
+<section id="veille" class="alt"><div class="container">
+  <div class="section-head"><small>07 — Veille</small><h2>Veille technologique</h2><p>Suivre l'évolution des technologies fait partie de mon développement professionnel.</p></div>
+  <div class="grid">
+    <div class="card">
+      <h3>L'évolution des systèmes d'exploitation</h3>
+      <p>Présentation consacrée au rôle des systèmes d'exploitation, à leur évolution, à la concurrence entre Windows, macOS, Linux, Android et iOS, ainsi qu'aux enjeux de sécurité, de cloud et d'intelligence artificielle.</p>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span><span class="tag">Android</span><span class="tag">iOS</span></div>
+    </div>
+    <div class="card">
+      <h3>Actualités des systèmes d'exploitation — Mars à mai 2026</h3>
+      <p>Suivi de trois actualités : Windows K2 et la recherche de stabilité, l'évolution des systèmes Apple vers les versions 26 et Liquid Glass, ainsi que la progression de Linux sur le marché desktop.</p>
+      <div class="tags"><span class="tag">Windows K2</span><span class="tag">Apple OS 26</span><span class="tag">Linux</span></div>
+    </div>
+    <div class="card">
+      <h3>Méthodologie de veille technologique</h3>
+      <p>Présentation de ma méthode de veille : collecte, tri, vérification et synthèse des informations, utilisation de flux RSS, Google Alertes, sources spécialisées et officielles, et croisement des sources avant de retenir une actualité.</p>
+      <div class="tags"><span class="tag">Feedly</span><span class="tag">Google Alertes</span><span class="tag">Sources officielles</span><span class="tag">Vérification</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="certifications"><div class="container">
+  <div class="section-head"><small>08 — Certifications</small><h2>Certifications & formations complémentaires</h2></div>
+  <div class="grid">
+    <div class="card">
+        <h3>Certification Pix</h3>
+        <p><strong>2026 — 591 / 895 Pix</strong></p>
+        <p>Niveau global : <strong>Avancé 1</strong><br>
+        Certification délivrée le 22 septembre 2026 au Lycée du Grand Nouméa.</p>
+        <p><strong>2024 — 71 / 896 Pix</strong><br>
+        Certification obtenue le 4 octobre 2024 au Lycée polyvalent du Mont-Doré.</p>
       </div>
-      <div class="hero-image">
-        > Connexion au réseau...
-        <br /><br />
-        ✔ Serveurs opérationnels
-        <br />
-        ✔ Sécurité active
-        <br />
-        ✔ Infrastructure stable
-        <br />
-        ✔ Supervision en ligne
-        <br />
-        ✔ Firewall sécurisé
-        <br />
-        ✔ Monitoring actif
-        <br /><br />
-        BTS SIO - Option SISR
-        <br />
-        Solutions d'Infrastructure,
-        <br />
-        Systèmes et Réseaux
-      </div>
-    </section>
+    <div class="card"><span class="cert-status">Parcours indiqué en cours</span><h3>Cisco Networking Basics</h3><p>Fondamentaux des réseaux et de l'infrastructure.</p></div>
+    <div class="card"><span class="cert-status">Parcours indiqué en cours</span><h3>Support & sécurité des réseaux</h3><p>Support réseau, sécurité et contrôle des accès.</p></div>
+    <div class="card"><span class="cert-status">Parcours indiqué en cours</span><h3>Linux Unhatched</h3><p>Commandes Linux, environnement open source et notions d'administration.</p></div>
+    <div class="card"><span class="cert-status">Parcours indiqué en cours</span><h3>IT Essentials 7</h3><p>Matériel, logiciels, dépannage et fondamentaux IT.</p></div>
+    <div class="card"><span class="cert-status">Parcours indiqué en cours</span><h3>Hacker éthique</h3><p>Sensibilisation aux vulnérabilités, à la cybersécurité offensive et à la protection des systèmes.</p></div>
+  </div>
+</div></section>
 
-    <section class="about" id="apropos">
-      <h2>À propos</h2>
-      <p>
-        Je suis actuellement étudiant en deuxième année de BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
-        Passionné par les infrastructures informatiques, les réseaux et la cybersécurité, je développe mes compétences à travers des projets techniques,
-        des laboratoires virtuels et des mises en situation professionnelles.
-      </p>
-    </section>
+<section id="contact" class="alt"><div class="container contact-box">
+  <div class="section-head" style="margin-inline:auto"><small>09 — Contact</small><h2>Me contacter</h2><p>Étudiant BTS SIO SISR — Dumbéa, Nouvelle-Calédonie.</p></div>
+  <div class="contact-links">
+    <a class="btn primary" href="mailto:matis08022007@gmail.com">Email</a>
+    <a class="btn" href="tel:+687816636">+687 81 66 36</a>
+    <a class="btn" href="https://github.com/MatisALIBAUD" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></section>
+</main>
 
-    <section id="veille">
-      <h2>Veille Technologique</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>L'évolution des systèmes d'exploitation</h3>
-          <p>
-            Projet de veille technologique portant sur l'évolution des systèmes d'exploitation,
-            leurs innovations, leurs usages professionnels et leurs concurrences permanentes
-            dans le domaine informatique.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>Windows vs Linux</h3>
-          <p>
-            Analyse comparative des environnements Windows et Linux dans les infrastructures,
-            la cybersécurité, les serveurs et l'administration système.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>Futur des infrastructures</h3>
-          <p>
-            Étude des nouvelles tendances IT : virtualisation, cloud computing,
-            cybersécurité et automatisation des infrastructures réseau.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>💻 BTS SIO SISR (2025 - 2026)</h3>
-          <p>
-            Étudiant en BTS Services Informatiques aux Organisations
-            option SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
-            <br /><br />
-            🔹 2025 :
-            Réalisation d'un stage professionnel de 4 semaines chez SF2I NC.
-            Développement des compétences en administration réseau,
-            infrastructures systèmes et cybersécurité.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about" id="projets">
-      <h2>Mes projets techniques</h2>
-      <p>
-        <strong>📡 ARCHITECTURE ET SEGMENTATION</strong>
-        <br /><br />
-        Projet de deuxième année de BTS SIO SISR portant sur l'architecture et la segmentation réseau.
-        Ce projet comprend la configuration de VLANs, de switchs et de routeurs,
-        la mise en place d'une segmentation réseau sécurisée ainsi que l'utilisation
-        d'un firewall Stormshield afin de protéger et contrôler les communications réseau.
-      </p>
-    </section>
-
-    <section id="dashboard">
-      <h2>Dashboard Réseau</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>🌍 Adresse IP</h3>
-          <p>192.168.1.10</p>
-        </div>
-
-        <div class="project-card">
-          <h3>🖥️ Serveurs</h3>
-          <p>✔ Tous opérationnels</p>
-        </div>
-
-        <div class="project-card">
-          <h3>🔥 Firewall</h3>
-          <p>✔ Protection active</p>
-        </div>
-
-        <div class="project-card">
-          <h3>📊 Monitoring</h3>
-          <p>✔ Réseau stable</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="parcours">
-      <h2>Mon parcours</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>🎓 BAC PRO Systèmes Numériques (2022 - 2024)</h3>
-          <p>
-            Formation réalisée au Lycée Polyvalent du Mont Dore.
-            Obtention du BAC Professionnel Systèmes Numériques avec mention Bien en 2024.
-            <br /><br />
-            🔹 2022 :
-            Deux stages de 4 semaines effectués chez CABLES TELECOM NC.
-            Découverte des infrastructures réseau et des environnements techniques.
-            <br /><br />
-            🔹 2023 :
-            Deux stages de 4 semaines réalisés :
-            un chez CABLES TELECOM NC et un chez SF2I NC.
-            Développement des compétences en maintenance informatique,
-            réseaux et support technique.
-            <br /><br />
-            🔹 2024 :
-            Deux nouveaux stages de 4 semaines effectués chez CABLES TELECOM NC,
-            renforçant mes compétences dans les systèmes et réseaux.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>💻 BTS SIO SISR (2025 - 2026)</h3>
-          <p>
-            Étudiant en BTS Services Informatiques aux Organisations
-            option SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
-            <br /><br />
-            🔹 2025 :
-            Réalisation d'un stage professionnel de 4 semaines chez SF2I NC.
-            Développement des compétences en administration réseau,
-            infrastructures systèmes et cybersécurité.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="competences">
-      <h2>Compétences techniques</h2>
-      <div class="skills-list">
-        <div class="skill">
-          <h3>🌐 Administration Réseau</h3>
-          <p>VLAN, adressage IP, configuration switchs et dépannage réseau.</p>
-          <br />
-          <p>████████░░ 80%</p>
-        </div>
-
-        <div class="skill">
-          <h3>🖥️ Windows Server</h3>
-          <p>Gestion Active Directory, DHCP, DNS et stratégies de groupe.</p>
-          <br />
-          <p>██████░░░░ 60%</p>
-        </div>
-
-        <div class="skill">
-          <h3>🐧 Linux</h3>
-          <p>Installation, configuration et administration de serveurs Linux.</p>
-          <br />
-          <p>███░░░░░░░ 30%</p>
-        </div>
-
-        <div class="skill">
-          <h3>🛡️ Cybersécurité</h3>
-          <p>Analyse réseau, supervision et sensibilisation sécurité.</p>
-          <br />
-          <p>███████░░░ 70%</p>
-        </div>
-
-        <div class="skill">
-          <h3>📦 Virtualisation</h3>
-          <p>Utilisation de VirtualBox et environnements virtualisés.</p>
-          <br />
-          <p>███████░░░ 70%</p>
-        </div>
-
-        <div class="skill">
-          <h3>🎨 HTML / CSS</h3>
-          <p>Création d'interfaces web simples et responsives.</p>
-          <br />
-          <p>████░░░░░░ 40%</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>🌐 Certification Cisco</h3>
-          <p>
-            Formation et pratique autour des réseaux, du routage,
-            des switchs et des infrastructures réseau.
-          </p>
-        </div>
-
-        
-
-        <div class="project-card">
-          <h3>🛡️ Cybersécurité</h3>
-          <p>
-            Formation et sensibilisation aux bonnes pratiques de sécurité informatique,
-            protection des systèmes et sécurisation des infrastructures réseau.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>💻 PIX</h3>
-          <p>
-            Certification PIX obtenue le 04/10/2024 au lycée Polyvalent du Mont Dore avec 414 points obtenus.
-            Niveau 4 validé dans l'ensemble des domaines de compétences numériques :
-            cybersécurité, environnement numérique, collaboration et gestion des données.
-          </p>
-        </div>
-      </div>
-    <div class="projects-grid" style="margin-top:40px;">
-        <div class="project-card">
-          <h3>🟢 Cisco Networking Basics</h3>
-          <p>
-            Certification Cisco Networking Academy actuellement en cours de validation.
-            Formation sur les bases des réseaux informatiques et de l'infrastructure réseau.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>🟢 Support et sécurité des réseaux</h3>
-          <p>
-            Formation Cisco orientée support réseau, sécurité des infrastructures
-            et contrôle des accès utilisateurs.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>🟢 Linux Unhatched</h3>
-          <p>
-            Initiation aux systèmes Linux, commandes essentielles,
-            administration et environnement open-source.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>🟢 IT Essentials 7</h3>
-          <p>
-            Formation portant sur le matériel informatique, les logiciels,
-            le dépannage et les fondamentaux IT.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>🟢 Hacker éthique</h3>
-          <p>
-            Sensibilisation à la cybersécurité offensive,
-            aux vulnérabilités et à la sécurisation des systèmes informatiques.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <h2>Contact</h2>
-      <p>📧 Email : matis08022007@gmail.com</p>
-      <p>📱 Téléphone : +687 81.66.36</p>
-      <p>💼 LinkedIn : À venir</p>
-    </section>
-  </main>
-
-  <footer>
-    BTS SIO SISR • Administration Systèmes & Réseaux • Cybersécurité • Infrastructure
-  </footer>
-
+<footer><div class="container">Matis ALIBAUD • BTS SIO SISR • Session 2026 • Systèmes, Réseaux & Cybersécurité</div></footer>
 </body>
 </html>
